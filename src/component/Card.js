@@ -10,23 +10,17 @@ import {
   FlatList,
   Button,
 } from 'react-native';
+import moment from 'moment';
 
 const Card = ({title, created_at, url, author}) => {
   return (
     <View style={styles.card}>
-      {/* <Image style={styles.cardImage} source={{uri: image}} /> */}
       <View style={styles.cardHeader}>
         <View>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.description}>{author}</Text>
           <View style={styles.timeContainer}>
-            <Image
-              style={styles.iconData}
-              source={{
-                uri: 'https://png.icons8.com/color/96/3498db/calendar.png',
-              }}
-            />
-            <Text style={styles.time}>{created_at}</Text>
+            <Text style={styles.time}>{moment(created_at).fromNow()}</Text>
           </View>
         </View>
       </View>
@@ -34,25 +28,7 @@ const Card = ({title, created_at, url, author}) => {
         <View style={styles.socialBarContainer}>
           <View style={styles.socialBarSection}>
             <TouchableOpacity style={styles.socialBarButton}>
-              <Image
-                style={styles.icon}
-                source={{
-                  uri: 'https://png.icons8.com/material/96/2ecc71/visible.png',
-                }}
-              />
               <Text style={styles.socialBarLabel}>{url}</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.socialBarSection}>
-            <TouchableOpacity style={styles.socialBarButton}>
-              <Image
-                style={styles.icon}
-                source={{
-                  uri:
-                    'https://png.icons8.com/ios-glyphs/75/2ecc71/comments.png',
-                }}
-              />
-              <Text style={styles.socialBarLabel}>25</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -142,6 +118,7 @@ const styles = StyleSheet.create({
   },
   timeContainer: {
     flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
   /******** social bar ******************/
   socialBarContainer: {
